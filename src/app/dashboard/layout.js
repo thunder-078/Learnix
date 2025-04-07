@@ -4,7 +4,7 @@ export const metadata = {
   title: 'Dashboard',
 };
 
-export default function DashboardLayout({ children }) {
+function DashboardLayout({ children }) {
   return (
     <html lang="en">
       <body>
@@ -36,3 +36,4 @@ export default function DashboardLayout({ children }) {
     </html>
   );
 }
+export default DashboardLayout;
