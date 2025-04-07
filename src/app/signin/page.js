@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 
+
 const SignIn = () => {
   const [signUpData, setSignUpData] = useState({ name: '', email: '', password: '' });
   const [signInData, setSignInData] = useState({ email: '', password: '' });
@@ -89,12 +90,12 @@ const handleSignIn = async (e) => {
           <div className="toggle-panel toggle-left">
             <h1>Welcome Back!</h1>
             <p>Sign in with your details to access all features.</p>
-            <button className="hidden" id="login">Sign In</button>
+            <button className="hidden1" id="login">Sign In</button>
           </div>
           <div className="toggle-panel toggle-right">
             <h1>New here?</h1>
             <p>Sign up now with your details to unlock all features!</p>
-            <button className="hidden" id="register">Sign Up</button>
+            <button className="hidden1" id="register">Sign Up</button>
           </div>
         </div>
       </div>
