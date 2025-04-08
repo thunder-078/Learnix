@@ -1,34 +1,43 @@
+// src/app/dashboard/page.js
+
 export default function Dashboard() {
-  const cards = [
+  const features = [
     {
-      title: "📊 Stats Overview",
-      text: "Track your growth and daily performance.",
+      title: "Stats Overview",
+      description: "Track your growth and daily performance.",
+      icon: "📊",
     },
     {
-      title: "📝 Tasks",
-      text: "Stay on top of your to-do list and priorities.",
+      title: "Tasks",
+      description: "Stay on top of your to-do list and priorities.",
+      icon: "📝",
     },
     {
-      title: "📅 Schedule",
-      text: "Organize your meetings and events.",
+      title: "Schedule",
+      description: "Organize your meetings and events.",
+      icon: "🗓️",
     },
     {
-      title: "👥 Team",
-      text: "Collaborate with team members effectively.",
+      title: "Team",
+      description: "Collaborate with team members effectively.",
+      icon: "👥",
     },
   ];
 
   return (
-    <main style={{ all: 'unset' }} className="min-h-screen bg-yellow-50 p-6">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Dashboard</h1>
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {cards.map((card, idx) => (
+    <main className="min-h-screen bg-gray-50 px-6 py-10">
+      <h1 className="text-3xl font-bold text-center mb-12">Dashboard</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {features.map(({ title, description, icon }) => (
           <div
-            key={idx}
-            className="bg-white rounded-xl p-4 shadow hover:shadow-md transition min-h-[120px] cursor-pointer"
+            key={title}
+            className="bg-white shadow-md rounded-xl p-6 flex items-start gap-4 hover:shadow-lg transition"
           >
-            <h2 className="font-semibold text-lg mb-2">{card.title}</h2>
-            <p className="text-gray-600 text-sm">{card.text}</p>
+            <div className="text-3xl">{icon}</div>
+            <div>
+              <h2 className="text-xl font-semibold">{title}</h2>
+              <p className="text-gray-600">{description}</p>
+            </div>
           </div>
         ))}
       </div>
