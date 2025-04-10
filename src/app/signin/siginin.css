@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-
 *{
     margin: 0;
     padding: 0;
@@ -8,7 +7,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body{
+.wrapper {
     background-color: #c9d6ff;
     background: linear-gradient(to right, #e2e2e2, #c9d6ff);
     display: flex;
@@ -16,7 +15,8 @@ body{
     justify-content: center;
     flex-direction: column;
     height: 100vh;
-}
+    width: 100vw;
+  }
 
 .container{
     background-color: #fff;
@@ -107,7 +107,6 @@ body{
 .logo{
     width: 150px;
     height: 100px;
-
 }
 
 .sign-up{

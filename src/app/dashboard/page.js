@@ -1,46 +1,61 @@
-// src/app/dashboard/page.js
+'use client';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import './dashboard.css';
 
 export default function Dashboard() {
-  const features = [
-    {
-      title: "Stats Overview",
-      description: "Track your growth and daily performance.",
-      icon: "📊",
-    },
-    {
-      title: "Tasks",
-      description: "Stay on top of your to-do list and priorities.",
-      icon: "📝",
-    },
-    {
-      title: "Schedule",
-      description: "Organize your meetings and events.",
-      icon: "🗓️",
-    },
-    {
-      title: "Team",
-      description: "Collaborate with team members effectively.",
-      icon: "👥",
-    },
-  ];
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    const expiry = localStorage.getItem('authExpiry');
+    if (!token || !expiry || new Date().getTime() > Number(expiry)) {
+      router.push('/signin');
+    }
+  }, []);
+
+  const handleLogout = async () => {
+    await fetch('/api/logout', { method: 'POST' });
+    localStorage.removeItem("userLogin");
+    router.push('/signin');
+  };
 
   return (
-    <main className="min-h-screen bg-gray-50 px-6 py-10">
-      <h1 className="text-3xl font-bold text-center mb-12">Dashboard</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        {features.map(({ title, description, icon }) => (
-          <div
-            key={title}
-            className="bg-white shadow-md rounded-xl p-6 flex items-start gap-4 hover:shadow-lg transition"
-          >
-            <div className="text-3xl">{icon}</div>
-            <div>
-              <h2 className="text-xl font-semibold">{title}</h2>
-              <p className="text-gray-600">{description}</p>
-            </div>
-          </div>
-        ))}
+    <div className="dashboard-layout">
+      <div className="sidebar">
+        <img src="/lg.svg" alt="Small Logo" className="small-logo" />
+        <img src="/logo.svg" alt="Full Logo" className="full-logo" />
+        <div className="line"></div>
+        <ul className="nav-links">
+          <li><img src="/home.svg" alt="home"/><span className="link-text">Home</span></li>
+          <li><img src="/profile.svg" alt="profile"/><span className="link-text">Profile</span></li>
+          <li><img src="/notes.svg" alt="notes"/><span className="link-text">My notes</span></li>
+          <li><img src="/test.svg" alt="test"/><span className="link-text">Test</span></li>
+        </ul>
+
+        <div className="logout-button" onClick={handleLogout}>
+          <img src="/logout.svg" alt="logout"/>
+          <span className="link-text">Logout</span>
+        </div>
       </div>
-    </main>
+
+      <div className="main-content">
+        <div className="top-bar">
+          <h1>Dashboard</h1>
+          <div className="search-box">
+            <input className="bg-clr" type="text" placeholder="Search..." />
+            <button type="submit">
+              <img src="/search.svg" alt="Search" />
+            </button>
+          </div>
+        </div>
+        <div className='long-line'></div>
+      </div>
+
+      <div className="floating-plus">
+        <img src="/add.svg" alt="Add" />
+      </div>
+    </div>
   );
+
 }
