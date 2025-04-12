@@ -23,7 +23,7 @@ export default function FolderPage({ params }) {
 
   const handleAddFile = () => fileInputRef.current.click();
 
-  const handleFileChange = async (event) => {
+  const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
@@ -37,25 +37,15 @@ export default function FolderPage({ params }) {
       locked: false,
     };
 
+    const reader = new FileReader();
     if (fileType === 'application/pdf') {
-      const reader = new FileReader();
-      reader.onload = async () => {
-        const base64Data = reader.result.split(',')[1];
-        const res = await fetch('/dashboard/[id]', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ file: base64Data }),
-        });
-        const data = await res.json();
-        console.log("Extracted PDF Text:", data.text); // 👈 Log text
-        newFile.content = data.text || 'Failed to extract PDF text.';
+      reader.onload = () => {
+        newFile.content = reader.result;
         setFiles((prev) => [...prev, newFile]);
       };
       reader.readAsDataURL(file);
     } else if (fileType.startsWith('text/')) {
-      const reader = new FileReader();
       reader.onload = () => {
-        console.log("TXT File Content:", reader.result); // 👈 Log text
         newFile.content = reader.result;
         setFiles((prev) => [...prev, newFile]);
       };
@@ -68,7 +58,7 @@ export default function FolderPage({ params }) {
   const openPreview = (file) => {
     setCurrentPreview(file);
     setFileContent(file.content);
-    setPreviewType(file.type.startsWith('text/') || file.type === 'application/pdf' ? 'text' : '');
+    setPreviewType(file.type.startsWith('text/') ? 'text' : 'pdf');
     setShowModal(true);
   };
 
@@ -133,7 +123,11 @@ export default function FolderPage({ params }) {
             <div className="modal-content large" onClick={(e) => e.stopPropagation()}>
               <button className="close-btn" onClick={closePreview}>✖</button>
               <h2>{currentPreview?.name}</h2>
-              <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{fileContent}</pre>
+              {previewType === 'text' ? (
+                <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{fileContent}</pre>
+              ) : (
+                <iframe src={fileContent} width="100%" height="500px" title="PDF Preview" />
+              )}
             </div>
           </div>
         )}
