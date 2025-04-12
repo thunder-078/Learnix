@@ -1,0 +1,125 @@
+.sidebar {
+    width: 70px;
+    background: linear-gradient(to bottom, #6276d7, #c9d6ff);
+    padding: 20px 10px;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: width 0.3s ease;
+  }
+  
+  .sidebar:hover {
+    width: 250px;
+    align-items: flex-start;
+  }
+  
+  /* Logo */
+  .logo, .small-logo {
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .small-logo {
+    width: 40px;
+    height: auto;
+    display: block;
+    opacity: 1;
+  }
+  
+  .full-logo {
+    width: 100%;
+    display: none;
+    opacity: 0;
+  }
+  
+  .sidebar:hover .small-logo {
+    display: none;
+    opacity: 0;
+  }
+  
+  .sidebar:hover .full-logo {
+    display: block;
+    opacity: 1;
+  }
+  
+  .sidebar:hover .logo {
+    opacity: 1;
+  }
+
+  .line {
+    height: 2px;
+    background-color: black;
+    margin: 15px 0 25px 0;
+    width: 30px;
+    align-self: center;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar:hover .line {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    font-weight: 600;
+    color: #000;
+  }
+  
+  .nav-links li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .nav-links li:hover {
+    background-color: #a2abd8;
+  }
+  
+  .nav-links li img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .link-text {
+    display: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .sidebar:hover .link-text {
+    display: inline;
+  }
+  
+  /* Logout button */
+  .logout-button {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .logout-button img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .logout-button .link-text {
+    font-weight: 600;
+    color: black;
+  }
+  

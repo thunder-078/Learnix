@@ -14,21 +14,12 @@
   transition: all 0.3s ease;
 }
 
-.long-line {
-  height: 2px;
-  background-color: black;
-  margin: 10px 0 25px 0;
-  width: 100%;
-  align-self: stretch;
-}
-
-/* Main content area */
 .main-content {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: start;
+  justify-content: flex-start;
   padding: 20px;
   background-color: #dbdfef;
   transition: margin-left 0.3s ease;
@@ -49,7 +40,7 @@
   color: black;
 }
 
-/* Search box */
+/* Search */
 .search-box {
   display: flex;
   align-items: center;
@@ -67,7 +58,7 @@
   border: none;
   outline: none;
   color: black;
-  background-color: transparent;
+  background: transparent;
 }
 
 .search-box button {
@@ -82,7 +73,23 @@
   height: 18px;
 }
 
-/* Floating + button */
+/* Long Divider Line */
+.long-line {
+  height: 2px;
+  background-color: black;
+  margin: 10px 0 25px 0;
+  width: 100%;
+  align-self: stretch;
+}
+
+/* Page Title */
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Floating + Button */
 .floating-plus {
   position: fixed;
   bottom: 30px;
@@ -100,14 +107,7 @@
   transform: scale(1.2);
 }
 
-/* Page title */
-.page-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-/* Folder cards */
+/* Folder Grid */
 .folder-container {
   display: flex;
   flex-wrap: wrap;
@@ -153,7 +153,7 @@
   color: #666;
 }
 
-/* Delete icon */
+/* Remove Icon */
 .remove-icon {
   position: absolute;
   top: 8px;
@@ -170,8 +170,15 @@
 }
 
 /* Modal */
-.modal {
+.modal,
+.modal-backdrop {
   position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+.modal {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -30%);
@@ -197,4 +204,131 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.modal-backdrop {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal Content */
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-content pre {
+  white-space: pre-wrap;
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* File Info Card */
+.file-info-card {
+  margin: 1rem;
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.file-info-card input,
+.file-info-card textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+/* File Card */
+.file-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #f1f5f9;
+  margin: 1rem 0;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.file-card:hover {
+  background-color: #e5e7eb;
+}
+
+/* Previews */
+.preview-hint {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.doc-preview {
+  margin: 1rem;
+  padding: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background: #f9fafb;
+}
+
+.doc-preview input,
+.doc-preview textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.doc-header input,
+.doc-header textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.doc-frame {
+  width: 100%;
+  height: 500px;
+  border: none;
+  margin-top: 1rem;
+}
+
+.img-preview {
+  max-width: 100%;
+  height: auto;
+  margin-top: 1rem;
+}
+
+.text-preview {
+  white-space: pre-wrap;
+  background: #f1f5f9;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  font-family: monospace;
 }
